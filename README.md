@@ -354,18 +354,18 @@ ac variable
 ```
 Calcula los coeficientes que se corresponden con la autocorrelación, los que estan por fuera del intervalo de confianza son estadisticamente significativos
 
-**OBSERVACIÓN: LA AUTOCORRELACION SIRVE COMO FORMA DE ELEGIR LA CANTIDAD DE REZAGOS DE LOS PROMEDIOS MOVILES**
+**OBSERVACIÓN: LA AUTOCORRELACIÓN SIRVE PARA ELEGIR LA CANTIDAD DE REZAGOS DE LOS PROMEDIOS MOVILES**
 ```
 corrgram variable
 ```
 calcula todas las autocorrelaciones y las expone en una tabla
 
-**FUNCION DE AUTOCORRELACION**: nos dice las correlaciones que hay entre cada periodo y sus rezagos, entonces nos va a servir para ver si hay estacionalidad
+**FUNCION DE AUTOCORRELACIÓN**: nos dice las correlaciones que hay entre cada periodo y sus rezagos, entonces nos va a servir para ver si hay estacionalidad
 
-La funcion de autocorrelacion no nos sirve para elegir la cantidad de rezagos de la parte AR, en general, lo que se ve es que la autocorrelación va cayendo lentamente. 
+La funcion de autocorrelación no nos sirve para elegir la cantidad de rezagos de la parte AR, en general, lo que se ve es que la autocorrelación va cayendo lentamente. 
 
-**FUNCION DE AUTOCORRELACION PARCIAL** -> orden AR.
-Para estimar el valor de la autocorrelacion parcial de orden 2 estoy controlando de forma parcial por el efecto de lo que paso en $t-1$.
+**FUNCION DE AUTOCORRELACIÓN PARCIAL** -> orden AR.
+Para estimar el valor de la autocorrelación parcial de orden 2 estoy controlando de forma parcial por el efecto de lo que paso en $t-1$.
 
 comando
 
