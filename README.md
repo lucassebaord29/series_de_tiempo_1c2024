@@ -524,7 +524,7 @@ La salida de STATA es la siguiente:
 
 # Predicción
 
-Presentando los datos de la inflación de 2023 hasta el mes de septiembre, evaluaremos qué tan bien predice nuestro modelo constrastando la inflación realizada. Existen 3 instancias para entrenar nuestro modelo:
+Presentando los datos de la inflación de 2024 hasta el mes de marzo, evaluaremos qué tan bien predice nuestro modelo constrastando la inflación realizada. Existen 3 instancias para entrenar nuestro modelo:
 
 
 1) In sample forecast o parte training: entrenamos al modelo dentro de la muestra con valores conocidos (estimación de regresión arima)
