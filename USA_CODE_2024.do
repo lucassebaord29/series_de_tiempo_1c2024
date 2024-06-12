@@ -2,7 +2,7 @@ clear all
 set more off
 
 // Importación de datos
-import excel "/Users/lucasordonez/Library/CloudStorage/OneDrive-Económicas-UBA/Econometria-Montes Rojas/Ayudante/20241C/DATA/CPI_USA_20224.xlsx", sheet("Hoja1") firstrow
+import excel "/Users/lucasordonez/Library/CloudStorage/OneDrive-Económicas-UBA/Econometria-Montes Rojas/Ayudante/20241C/DATA/CPI_USA_20224.xlsx", sheet("Hoja1") firstrow
 
 // Generación de variable Fecha
 gen Fecha = m(2000m1) + _n - 1
@@ -151,63 +151,62 @@ drop er3
 // Pronósticos ex-post
 
 // 1) ARMA (1,1)
-arima CLEAN_INF2 if Fecha < tm(2024m3), arima(1,0,1)
-predict inf_pred1, dynamic(tm(2024m3))
+arima CLEAN_INF2 if Fecha < tm(2024m1), arima(1,0,1)
+predict inf_pred1, dynamic(tm(2024m1))
 gen inhat20 = inf_pred1 + trend + estacio
 label variable inhat20 "Pronóstico ARMA (1,1)"
 gen error_pron = dlogIPC - inhat20 if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
 gen error_pron_cuad = error_pron^2 if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
 rename error_pron ehat_arma11
 
+//2024
+tsline inhat20 dlogIPC if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
+
+
 //2023-2024
 tsline inhat20 dlogIPC if Fecha > tm(2022m12) & Fecha <= tm(2024m3)
 
 
-//2022-2024
-tsline inhat20 dlogIPC if Fecha > tm(2021m12) & Fecha <= tm(2024m3)
-
-
 // 2) AR (2)
-arima CLEAN_INF2 if Fecha < tm(2024m3), arima(2,0,0)
-predict inf_pred2, dynamic(tm(2024m3))
+arima CLEAN_INF2 if Fecha < tm(2024m1), arima(2,0,0)
+predict inf_pred2, dynamic(tm(2024m1))
 gen inhat20_2 = inf_pred2 + trend + estacio
 label variable inhat20_2 "Pronóstico AR (2)"
 gen error_pron2 = dlogIPC - inhat20_2 if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
 gen error_pron_cuad2 = error_pron2^2 if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
 rename error_pron2 ehat_ar2
 
+//2024
+tsline inhat20_2 dlogIPC if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
+
+
 //2023-2024
-
 tsline inhat20_2 dlogIPC if Fecha > tm(2022m12) & Fecha <= tm(2024m3)
-
-
-//2022-2024
-tsline inhat20_2 dlogIPC if Fecha > tm(2021m12) & Fecha <= tm(2024m3)
 
 
 
 // 3) MA(1)
-arima CLEAN_INF2 if Fecha < tm(2024m3), arima(0,0,1)
-predict inf_pred3, dynamic(tm(2024m3))
+arima CLEAN_INF2 if Fecha < tm(2024m1), arima(0,0,1)
+predict inf_pred3, dynamic(tm(2024m1))
 gen inhat20_3 = inf_pred3 + trend + estacio
 label variable inhat20_3 "Pronóstico MA (1)"
 gen error_pron3 = dlogIPC - inhat20_3 if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
 gen error_pron_cuad3 = error_pron3^2 if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
 rename error_pron3 ehat_ma1
 
+//2024
+
+tsline inhat20_3 dlogIPC if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
+
 //2023-2024
 
 tsline inhat20_3 dlogIPC if Fecha > tm(2022m12) & Fecha <= tm(2024m3)
 
-//2022-2024
-
-tsline inhat20_3 dlogIPC if Fecha > tm(2021m12) & Fecha <= tm(2024m3)
 
 
 
 
-
-tsline inhat20 inhat20_2 inhat20_3 dlogIPC if Fecha > tm(2022m12) & Fecha <= tm(2024m3)
+tsline inhat20 inhat20_2 inhat20_3 dlogIPC if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
 
 // Comparación de errores
 sum ehat_arma11 ehat_ar2 ehat_ma1
