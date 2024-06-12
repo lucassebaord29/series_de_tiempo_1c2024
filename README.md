@@ -539,14 +539,14 @@ Presentando los datos de la inflación de 2024 hasta el mes de marzo, evaluaremo
 1) In sample forecast o parte training
 
 ```
-arima CLEAN_INF2 if Fecha < tm(2024m3), arima(1,0,1)
+arima CLEAN_INF2 if Fecha < tm(2024m1), arima(1,0,1)
 ```
 
 2) Ex post out of sample forecast o parte testing:
 
 
 ```
-predict inf_pred1, dynamic(tm(2024m3))
+predict inf_pred1, dynamic(tm(2024m1))
 gen inhat20 = inf_pred1 + trend + estacio
 
 
@@ -557,22 +557,24 @@ gen inhat20 = inf_pred1 + trend + estacio
 Graficamos
 
 ```
+//2024
+tsline inhat20 dlogIPC if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
+
+
 //2023-2024
 tsline inhat20 dlogIPC if Fecha > tm(2022m12) & Fecha <= tm(2024m3)
-
-
-//2022-2024
-tsline inhat20 dlogIPC if Fecha > tm(2021m12) & Fecha <= tm(2024m3)
 ```
 
-El primer gráfico muestra nuestra predicción a lo largo del año 2023-2024
+El primer gráfico muestra nuestra predicción a lo largo del año 2024
 
-<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/c9af4959-98bd-4435-b618-9ad86eb7a145">
+<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/9c2fe1d2-3c79-420e-b6aa-3aa1edf66a38">
 
 
-El segundo gráfico muestra nuestro modelo junto con la predicción del año 2024 para el período 2022-2024
 
-<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/c648a21c-5c65-498c-9348-06a817be052e">
+El segundo gráfico muestra nuestro modelo junto con la predicción del año 2024 para el período 2023-2024
+
+<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/8714f291-f062-4aeb-89f6-a9df2d49c29a">
+
 
 
 
@@ -585,23 +587,24 @@ Siguiendo los mismos pasos que utilizamos en el modelo anterior obtenemos los si
 Graficamos
 
 ```
+//2024
+tsline inhat20_2 dlogIPC if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
+
+
 //2023-2024
-
 tsline inhat20_2 dlogIPC if Fecha > tm(2022m12) & Fecha <= tm(2024m3)
-
-
-//2022-2024
-tsline inhat20_2 dlogIPC if Fecha > tm(2021m12) & Fecha <= tm(2024m3)
 ```
 
-El primer gráfico muestra nuestra predicción a lo largo del año 2023-2024
+El primer gráfico muestra nuestra predicción a lo largo del año 2024
 
-<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/ed8c7de6-93a0-41b3-bd64-bde7c493f5e8">
+<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/9de58aa7-bd7a-4f57-9f8c-d0bbda670df6">
 
 
-El segundo gráfico muestra nuestro modelo junto con la predicción del año 2024 para el período 2022-2024
 
-<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/2640442b-8a69-40bd-9646-3812d7886f6d">
+El segundo gráfico muestra nuestro modelo junto con la predicción del año 2024 para el período 2023-2024
+
+<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/74ffcd48-dbcb-47f7-bcf5-b69e98d8b102">
+
 
 
 ### Modelo MA(1)
@@ -612,29 +615,31 @@ Siguiendo los mismos pasos que utilizamos en el modelo anterior obtenemos los si
 Graficamos
 
 ```
+//2024
+
+tsline inhat20_3 dlogIPC if Fecha > tm(2023m12) & Fecha <= tm(2024m3)
+
 //2023-2024
 
 tsline inhat20_3 dlogIPC if Fecha > tm(2022m12) & Fecha <= tm(2024m3)
-
-//2022-2024
-
-tsline inhat20_3 dlogIPC if Fecha > tm(2021m12) & Fecha <= tm(2024m3)
 ```
 
-El primer gráfico muestra nuestra predicción a lo largo del año 2023-24
+El primer gráfico muestra nuestra predicción a lo largo del año 2024
 
-<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/088e9c0d-d7c7-465a-815a-52e92497d1a8">
+<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/add54e6d-9193-4b2d-8d02-c4ce1f670261">
 
 
-El segundo gráfico muestra nuestro modelo junto con la predicción del año 2024 para el período 2022-2024
 
-<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/def453c6-43a5-433c-8856-fa37f5c83336">
+El segundo gráfico muestra nuestro modelo junto con la predicción del año 2024 para el período 2023-2024
+
+<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/5dcc4956-fa17-4ed2-aaca-43ab55842f39">
 
 
 
 ### Comparación de pronósticos
 
-<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/e79d5659-2d4c-49ec-9c45-644754fe8ac4">
+<img width="1458" alt="image" src="https://github.com/lucassebaord29/series_de_tiempo_1c2024/assets/67765423/6f934669-6824-488f-9d72-ddb22dac3c66">
+
 
 
 Una aplicación util es comparar los errores de nuestro modelo:
